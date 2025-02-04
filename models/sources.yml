@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+- name: kafka
+  schema: public
+  tables:
+    - name: pageviews
+      description: "Pageviews stream"
+      config:
+        materialized: stream
+        parameters:
+          topic: pageviews
+          'value.format': JSON
+      columns:
+        - name: viewtime
+          type: BIGINT
+        - name: userid
+          type: VARCHAR
+        - name: pageid
+          type: VARCHAR
+    - name: users_log
+      description: "Users log"
+      config:
+        materialized: changelog
+        primary_key: userid
+        parameters:
+          'topic': 'users'
+          'key.format': 'json'
+          'key.type': 'STRUCT<userid VARCHAR>'
+          'value.format': 'json'
+      columns:
+        - name: registertime
+          type: BIGINT
+        - name: userid
+          type: VARCHAR
+        - name: regionid
+          type: VARCHAR
+        - name: gender
+          type: VARCHAR
+        - name: interests
+          type: ARRAY<VARCHAR>
+        - name: contactinfo
+          type: STRUCT<phone VARCHAR, city VARCHAR, "state" VARCHAR, zipcode VARCHAR>
