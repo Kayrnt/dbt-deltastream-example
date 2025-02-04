@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: stg_shoe_orders
+    description: "Staged shoe order events"
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order"
+        tests:
+          - unique
+          - not_null
+      - name: product_id
+        description: "Product identifier"
+        tests:
+          - not_null
+      - name: customer_id
+        description: "Customer identifier"
+        tests:
+          - not_null
+      - name: total_price
+        description: "Total price of the order"
+        tests:
+          - not_null
+      - name: order_timestamp
+        description: "Timestamp when the order was placed"
+        tests:
+          - not_null
+
+  - name: stg_shoe_clickstream
+    description: "Staged user interaction events"
+    columns:
+      - name: product_id
+        description: "Product identifier"
+        tests:
+          - not_null
+      - name: user_id
+        description: "User identifier"
+        tests:
+          - not_null
+      - name: view_time
+        description: "Duration of the product view"
+      - name: page_url
+        description: "URL of the viewed page"
+      - name: ip
+        description: "IP address of the user"
+      - name: view_timestamp
+        description: "Timestamp when the view occurred"
+        tests:
+          - not_null

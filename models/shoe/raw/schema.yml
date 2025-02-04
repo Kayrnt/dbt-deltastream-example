@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: shoe_orders
+    config:
+      materialized: stream
+      parameters:
+        topic: shoe_orders
+        'value.format': JSON
+    columns:
+      - name: order_id
+        type: bigint
+        nullable: false
+      - name: customer_id
+        type: varchar
+      - name: product_id
+        type: varchar
+      - name: ts
+        type: timestamp
+
+  - name: shoe_clickstream
+    config:
+      materialized: stream
+      parameters:
+        topic: shoe_clickstream
+        'value.format': JSON
+    columns:
+      - name: product_id
+        type: varchar
+      - name: user_id
+        type: varchar
+      - name: view_time
+        type: integer
+      - name: page_url
+        type: varchar
+      - name: ip
+        type: varchar
+      - name: ts
+        type: timestamp
+
+  - name: shoe_customers
+    config:
+      materialized: stream
+      parameters:
+        topic: shoe_customers
+        'value.format': JSON
+    columns:
+      - name: id
+        type: varchar
+      - name: first_name
+        type: varchar
+      - name: last_name
+        type: varchar
+      - name: email
+        type: varchar
+      - name: phone
+        type: varchar
+      - name: street_address
+        type: varchar
+      - name: state
+        type: varchar
+      - name: zip_code
+        type: varchar
+      - name: country
+        type: varchar
+      - name: country_code
+        type: varchar
+        

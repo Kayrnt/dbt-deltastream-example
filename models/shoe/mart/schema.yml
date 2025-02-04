@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: order_stats
+    description: "Hourly aggregated order statistics by country"
+    columns:
+      - name: window_start
+        type: timestamp
+        description: "Start of the hourly window"
+      - name: window_end
+        type: timestamp
+        description: "End of the hourly window"
+      - name: order_count
+        type: integer
+        description: "Number of orders in the window"
+      - name: total_order_value
+        type: decimal
+        description: "Total value of orders in the window"
+      - name: country
+        type: varchar
+        description: "Country where the orders originated from"

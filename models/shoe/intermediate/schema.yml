@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: int_product_performance
+    description: "Aggregated product performance metrics including views and conversion rates"
+    columns:
+      - name: product_id
+        description: "Product identifier"
+        tests:
+          - unique
+          - not_null
+      - name: unique_views
+        description: "Number of unique users who viewed the product"
+        tests:
+          - not_null
+      - name: total_orders
+        description: "Total number of orders for the product"
+        tests:
+          - not_null
+      - name: conversion_rate
+        description: "Percentage of views that converted to orders"
+        tests:
+          - not_null
+
+  - name: int_order_stats
+    description: "Hourly order statistics by customer"
+    columns:
+      - name: window_start
+        description: "Start of the hourly window"
+        tests:
+          - not_null
+      - name: window_end
+        description: "End of the hourly window"
+        tests:
+          - not_null
+      - name: customer_id
+        description: "Customer identifier"
+        tests:
+          - not_null
+      - name: order_count
+        description: "Number of orders in the window"
+        tests:
+          - not_null
+      - name: total_order_value
+        description: "Total value of orders in the window"
+        tests:
+          - not_null
