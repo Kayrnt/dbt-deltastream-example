@@ -1,6 +1,11 @@
 {{
   config(
-    materialized='stream'
+    materialized='stream',
+    parameters={
+      'value.format': 'json',
+      'key.format': 'JSON',
+      'store': 'trial_store'
+    }
   )
 }}
 SELECT 
@@ -13,4 +18,4 @@ SELECT
     interests, 
     contactinfo
 FROM {{ source('kafka', 'pageviews') }} p
-    JOIN {{ source('kafka', 'users_log') }} u ON u.userid = p.userid
+JOIN {{ source('kafka', 'users_log') }} u ON u.userid = p.userid

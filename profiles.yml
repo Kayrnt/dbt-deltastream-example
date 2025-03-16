@@ -5,13 +5,14 @@ dbt_deltastream_example:
       token: your-token-here
       database: dev
       schema: public
+      organization_id: your-organization-id-here
 
     prod:
       type: deltastream
       token: your-token-here
       database: prod
       schema: public
-      #organization_id: your-organization-id-here # Optional
+      organization_id: your-organization-id-here
       #role: your-role-here # Optional
       #store: your-store-here # Optional
 
