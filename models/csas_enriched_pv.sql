@@ -4,7 +4,7 @@
     parameters={
       'value.format': 'json',
       'key.format': 'JSON',
-      'store': 'trial_store'
+      'store': 'kafka_cluster'
     }
   )
 }}
@@ -18,4 +18,4 @@ SELECT
     interests, 
     contactinfo
 FROM {{ source('kafka', 'pageviews') }} p
-JOIN {{ source('kafka', 'users_log') }} u ON u.userid = p.userid
+LEFT JOIN {{ source('kafka', 'users_log') }} u ON u.userid = p.userid

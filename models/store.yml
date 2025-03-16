@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+- name: postgres
+  tables:
+    - name: postgres_cluster
+      description: "Postgres connection for data integration"
+      config:
+        materialized: store
+        parameters:
+          type: POSTGRESQL
+          access_region: "AWS us-east-1"
+          uris: {{ env_var('POSTGRES_URI') }}
+          'postgres.username': {{ env_var('POSTGRES_USERNAME') }}
+          'postgres.password': {{ env_var('POSTGRES_PASSWORD') }}
+- name: kafka
+  tables:
+    - name: kafka_cluster
+      config:
+        materialized: store
+        parameters:
+          'type': 'KAFKA' 
+          'access_region': "AWS us-east-1" 
+          'uris': {{ env_var('KAFKA_URIS') }}
+          'tls.disabled': True
