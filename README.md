@@ -33,9 +33,27 @@ dbt_deltastream_example:
     dev:
       type: deltastream
       token: your-token-here
+      database: dev
+      schema: public
+      organization_id: your-organization-id-here
 ```      
 
 ## Run the sample project
+
+Create a `dev` database if it doesn't exist:
+
 ```bash
-dbt run --target dev
+dbt run-operation create_deltastream_database --args '{database_name: dev}'
+```
+
+Then create the sources with dbt:
+
+```bash
+./create_sources.sh
+```
+
+and create the transformation with dbt:
+
+```bash
+dbt -d run
 ```
