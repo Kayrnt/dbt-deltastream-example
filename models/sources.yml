@@ -1,10 +1,10 @@
 version: 2
 
 sources:
-- name: kafka
-  schema: public
+- name: kafka # source name, not used in DeltaStream but required by dbt
+  schema: public # schema where the stream will be created, `public` schema is created upon database creation
   tables:
-    - name: pageviews
+    - name: pageviews # stream name
       description: "Pageviews stream"
       config:
         materialized: stream

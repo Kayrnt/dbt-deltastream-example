@@ -11,4 +11,4 @@
 SELECT 
     viewtime,  
     contactinfo -> zipcode AS zipcode
-FROM {{ ref('csas_enriched_pv') }} p
+FROM {{ ref('csas_enriched_pageviews') }} p
