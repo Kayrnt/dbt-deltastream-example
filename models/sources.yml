@@ -9,6 +9,7 @@ sources:
       config:
         materialized: stream
         parameters:
+          store: trial_store
           topic: pageviews
           'value.format': JSON
       columns:
@@ -24,6 +25,7 @@ sources:
         materialized: changelog
         primary_key: userid
         parameters:
+          store: trial_store
           'topic': 'users'
           'key.format': 'json'
           'key.type': 'STRUCT<userid VARCHAR>'
