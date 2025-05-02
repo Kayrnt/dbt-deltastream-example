@@ -1,9 +1,9 @@
 [project]
 name = "dbt-deltastream-example"
 version = "0.1.0"
-description = "DBT Delta Stream Example"
+description = "DBT DeltaStream Example"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "dbt-snowflake==1.9.2",
+    "dbt-deltastream",
 ]
