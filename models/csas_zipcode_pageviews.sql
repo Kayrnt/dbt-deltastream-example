@@ -1,14 +1,18 @@
 {{
   config(
-    materialized='stream',
-    parameters={
-      'value.format': 'json',
-      'key.format': 'JSON',
-      'store': 'trial_store'
-    }
+    materialized = 'incremental',
+    unique_key = ['userid', 'viewtime'],
+    incremental_strategy = 'merge'
   )
 }}
-SELECT 
-    viewtime,  
-    contactinfo -> zipcode AS zipcode
-FROM {{ ref('csas_enriched_pageviews') }} p
+
+SELECT
+    viewtime,
+    userid,
+    pageid,
+    contactinfo.zipcode as zipcode 
+FROM {{ ref('csas_enriched_pageviews') }}
+WHERE contactinfo.zipcode is not null
+{% if is_incremental() %}
+    AND viewtime > (SELECT MAX(viewtime) FROM {{ this }})
+{% endif %}
