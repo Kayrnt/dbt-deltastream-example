@@ -1,0 +1,10 @@
+version: 2
+sources:
+- name: kafka # source name, not used in DeltaStream but required by dbt
+  tables:
+  - name: dbt_compute_pool
+    config:
+      materialized: compute_pool
+      parameters:
+        'compute_pool.size': 'small'
+        'compute_pool.timeout_min': 1
